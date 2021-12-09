@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44493756, g: 0.49451143, b: 0.57365435, a: 1}
+  m_IndirectSpecularColor: {r: 0.44722748, g: 0.4971528, b: 0.57518065, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,14 +294,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760696406}
-  m_LocalRotation: {x: -0.8803957, y: -0.06224586, z: 0.12059918, w: -0.45440596}
+  m_LocalRotation: {x: -0.2813006, y: -0.6607568, z: 0.294879, w: -0.6303307}
   m_LocalPosition: {x: -0.06, y: 3.1, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 485.4, y: 15.6, z: 0}
+  m_LocalEulerAnglesHint: {x: 408.1, y: 92.7, z: 0}
 --- !u!114 &760696409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 1591758231}
   - component: {fileID: 1591758230}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -375,7 +375,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: a39ebefff607f854aa9b63bb920d9fd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
