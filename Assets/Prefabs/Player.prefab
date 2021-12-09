@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5326024754137132418}
   - component: {fileID: 2975822633617490229}
   - component: {fileID: 8085568574220156579}
+  - component: {fileID: 7654582753706641550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46,7 +47,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.8
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_SlopeLimit: 30
   m_StepOffset: 0.05
   m_SkinWidth: 0.08
@@ -65,9 +66,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2975822633617490229}
-  moveSpeed: 12
+  moveSpeed: 9
   mouseSensitivity: 1
   playerCam: {fileID: 7368229437178957383}
+--- !u!114 &7654582753706641550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709643637852037772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c884dec006a9cdb40a0c26c24a62283f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  christmasLightRopePrefab: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
+  playerCameraReference: {fileID: 7368229437178957383}
+  lightPosPickMaxDist: 10
 --- !u!1 &5461352961289583118
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +179,7 @@ GameObject:
   - component: {fileID: 7368229437178957377}
   - component: {fileID: 7368229437178957379}
   - component: {fileID: 7368229437178957376}
+  - component: {fileID: 5487793870017883748}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -256,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: d8b50079a767aa541aa663927e464231, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -276,8 +293,8 @@ MonoBehaviour:
   volumeTrigger: {fileID: 7368229437178957382}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
-  stopNaNPropagation: 0
+    m_Bits: 19
+  stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
   antialiasingMode: 0
   temporalAntialiasing:
@@ -315,9 +332,17 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!124 &5487793870017883748
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368229437178957381}
+  m_Enabled: 1

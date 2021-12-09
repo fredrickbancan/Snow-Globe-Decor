@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: furTreeFoliage_wind
-  m_Shader: {fileID: 10511, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 10601, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _WINDQUALITY_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -108,15 +108,15 @@ Material:
     - Vector1_78EF3A58: 5
     - Vector1_9904330F: 0.1
     - Vector1_C312B0D1: 0.09
-    - _AO: 2.78
+    - _AO: 0
     - _AlphaClip: 1
-    - _BaseLight: 0.345
+    - _BaseLight: 0
     - _BillboardKwToggle: 0
     - _BillboardShadowFade: 0.5
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 0
-    - _Cutoff: 0.853
+    - _Cutoff: 0.902
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
@@ -129,14 +129,14 @@ Material:
     - _Mode: 0
     - _NormalIntensity: 1
     - _NormalMapKwToggle: 0
-    - _Occlusion: 0
+    - _Occlusion: 0.4
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 0
     - _SampleGI: 0
     - _ShadowStrength: 1
-    - _Shininess: 0
+    - _Shininess: 0.01
     - _Smoothness: 0
     - _SmoothnessSource: 1
     - _SmoothnessTextureChannel: 0
