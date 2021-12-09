@@ -291,4 +291,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedOverlay: {fileID: 2291363440192808180}
   scaleUpAmount: 1.1
-  scaleUpSpeed: 0.2
+  scaleUpSpeed: 0.1
