@@ -1,8 +1,14 @@
 using UnityEngine;
 
-enum DecorationRopeType
+public enum DecorationRopeType
 { 
-    CHRISTMAS_LIGHTS
+    RANDOM_COLOR_LIGHTS,
+    CHRISTMAS_LIGHTS,
+    RED_LIGHTS,
+    GREEN_LIGHTS,
+    AMBER_LIGHTS,
+    BLUE_LIGHTS,
+    WHITE_LIGHTS
 }
 
 public class DecorationRopeMaker : MonoBehaviour
@@ -11,14 +17,14 @@ public class DecorationRopeMaker : MonoBehaviour
     [SerializeField] private float distanceBetweenDecor = 0.05F;
     [SerializeField] private SpawnableLight spawnableChristmasLightPrefab;
     [SerializeField] private LineRenderer lineRendererPrefab;
-    [SerializeField] private DecorationRopeType decorationType = DecorationRopeType.CHRISTMAS_LIGHTS;
+
     private Vector3 startPoint;
     private Vector3 endPoint;
     private Vector3 danglePoint;
     private float directDist = 0.0F;
     private float decorDistNormalized = 0.0F;
 
-    public void Create(Vector3 startPoint, Vector3 endPoint)
+    public void Create(DecorationRopeType drt, Vector3 startPoint, Vector3 endPoint)
     {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
@@ -27,10 +33,6 @@ public class DecorationRopeMaker : MonoBehaviour
         float apprxRopeLen = ApproximateRopeLength();
         int apprxLightCount = (int)(apprxRopeLen / distanceBetweenDecor);
         decorDistNormalized = distanceBetweenDecor / apprxRopeLen;
-
-        GameObject decor = GetDecorationByType();
-        
-
         LineRenderer lr = Instantiate(lineRendererPrefab);
         lr.positionCount = apprxLightCount + 1;
         int j = 0;
@@ -38,21 +40,57 @@ public class DecorationRopeMaker : MonoBehaviour
         {
             Vector3 pos = GetPositionOnRope(i);
             lr.SetPosition(j, pos + Vector3.up * 0.02F);
-            Instantiate(decor, pos, Quaternion.identity);
+            InstantiateDecorationByType(drt, pos);
             j++;
         }
         
     }
 
-    private GameObject GetDecorationByType()
+    private GameObject InstantiateDecorationByType(DecorationRopeType drt, Vector3 pos)
     {
-        switch (decorationType)
+        GameObject result = null;
+        SpawnableLight sl = null;
+        switch (drt)
         {
+            case DecorationRopeType.RANDOM_COLOR_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.RANDOM_COLORS);
+                result = sl.gameObject;
+                break;
             case DecorationRopeType.CHRISTMAS_LIGHTS:
-                return spawnableChristmasLightPrefab.gameObject;
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.CHRISTMAS_PATTERN);
+                result = sl.gameObject;
+                break;
+            case DecorationRopeType.RED_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.RED);
+                result = sl.gameObject;
+                break;
+            case DecorationRopeType.GREEN_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.GREEN);
+                result = sl.gameObject;
+                break;
+            case DecorationRopeType.AMBER_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.AMBER);
+                result = sl.gameObject;
+                break;
+            case DecorationRopeType.BLUE_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.BLUE);
+                result = sl.gameObject;
+                break;
+            case DecorationRopeType.WHITE_LIGHTS:
+                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
+                sl.SetDecorationLightType(DecorationLightType.WHITE);
+                result = sl.gameObject;
+                break;
             default:
-                return spawnableChristmasLightPrefab.gameObject;
+                break;
         }
+        return result;
     }
 
     private Vector3 GetPositionOnRope(float progress)

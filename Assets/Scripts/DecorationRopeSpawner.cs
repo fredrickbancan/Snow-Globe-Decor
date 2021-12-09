@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LightSpawner : MonoBehaviour
+public class DecorationRopeSpawner : MonoBehaviour
 {
     [SerializeField] private DecorationRopeMaker christmasLightRopePrefab;
     [SerializeField] private Camera playerCameraReference;
@@ -9,6 +9,7 @@ public class LightSpawner : MonoBehaviour
     private Vector3 chosenRopeStartPos;
     private Vector3 chosenRopeEndPos;
     private DecorationRopeMaker christmasLightRopeInstance;
+    private DecorationRopeType selectedRopeType = DecorationRopeType.RANDOM_COLOR_LIGHTS;
 
 
     private void Start()
@@ -21,12 +22,32 @@ public class LightSpawner : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(ropeStartChosen)
+            if (ropeStartChosen)
             {
                 DoPickRopeEndAndCreate();
-                return;
             }
-            DoPickRopeStart();
+            else
+            {
+                DoPickRopeStart();
+            }        
+        }
+
+        int ropeTypeInt = (int)selectedRopeType;
+
+        if (Input.mouseScrollDelta.y < -0.1F)
+        {
+            ropeTypeInt++;
+            if (ropeTypeInt > 6) ropeTypeInt = 6;
+            selectedRopeType = (DecorationRopeType)ropeTypeInt;
+            Debug.Log("Selected Decor Type:" + selectedRopeType);
+        }
+
+        if (Input.mouseScrollDelta.y > 0.1F)
+        {
+            ropeTypeInt--;
+            if (ropeTypeInt < 0) ropeTypeInt = 0;
+            selectedRopeType = (DecorationRopeType)ropeTypeInt;
+            Debug.Log("Selected Decor Type:" + selectedRopeType);
         }
     }
 
@@ -45,7 +66,7 @@ public class LightSpawner : MonoBehaviour
         {
             return;
         }
-        christmasLightRopeInstance.Create(chosenRopeStartPos, chosenRopeEndPos);
+        christmasLightRopeInstance.Create(selectedRopeType, chosenRopeStartPos, chosenRopeEndPos);
         chosenRopeStartPos = chosenRopeEndPos;
         chosenRopeEndPos = Vector3.zero;
     }

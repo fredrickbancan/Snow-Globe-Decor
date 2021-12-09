@@ -1056,11 +1056,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb52199998be6b409536107c44852da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorChristmasColors:
-    redLightColor: {r: 1, g: 0.05291006, b: 0, a: 0}
-    greenLightColor: {r: 0.044025116, g: 0.5283019, b: 0, a: 0}
-    amberLightColor: {r: 0.8207547, g: 0.6295562, b: 0, a: 0}
-    blueLightColor: {r: 0, g: 0.03644681, b: 1, a: 0}
+  editorChristmasLightColors:
+    redColor: {r: 1, g: 0, b: 0, a: 1}
+    greenColor: {r: 0, g: 0.4433962, b: 0.006797615, a: 1}
+    amberColor: {r: 0.6226415, g: 0.4873481, b: 0, a: 1}
+    blueColor: {r: 0.1745283, g: 0.31144178, b: 1, a: 1}
+    whiteColor: {r: 0.8584906, g: 0.8341937, b: 0.74105555, a: 1}
+  editorChristmasDecorationColors:
+    redColor: {r: 1, g: 0, b: 0, a: 1}
+    greenColor: {r: 0.048704147, g: 1, b: 0, a: 1}
+    amberColor: {r: 1, g: 0.7779867, b: 0, a: 1}
+    blueColor: {r: 0, g: 0.0791831, b: 1, a: 1}
+    whiteColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &664098222
 Transform:
   m_ObjectHideFlags: 0
