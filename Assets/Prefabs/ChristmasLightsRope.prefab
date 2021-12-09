@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
+      propertyPath: spawnableLightSpotPrefab
+      value: 
+      objectReference: {fileID: 310457403910858895, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
+    - target: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
+      propertyPath: spawnableChristmasLightPrefab
+      value: 
+      objectReference: {fileID: 310457403910858895, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
     - target: {fileID: 3675878086696405418, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832070123829510211, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
       propertyPath: m_Name
-      value: DecorationRope
+      value: ChristmasLightsRope
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808325dab214ead47989dc4d9f960f12, type: 3}

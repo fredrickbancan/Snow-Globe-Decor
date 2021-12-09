@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dangleToDistanceRatio: 0.25
   distanceBetweenDecor: 0.2
-  spawnableLightPrefab: {fileID: 310457403910858895, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
-  spawnableLightSpotPrefab: {fileID: 310457403910858895, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
+  spawnableChristmasLightPrefab: {fileID: 310457403910858895, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
   lineRendererPrefab: {fileID: 2411837860325371963, guid: 8b331bad95f354743b938d6dd104a607, type: 3}
   decorationType: 0
