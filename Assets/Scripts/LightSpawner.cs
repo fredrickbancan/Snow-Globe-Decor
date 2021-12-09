@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class LightSpawner : MonoBehaviour
 {
-    [SerializeField] private DecorationRope christmasLightRopePrefab;
+    [SerializeField] private DecorationRopeMaker christmasLightRopePrefab;
     [SerializeField] private Camera playerCameraReference;
     [SerializeField] private float lightPosPickMaxDist = 10.0F;
     private bool ropeStartChosen = false;
     private Vector3 chosenRopeStartPos;
     private Vector3 chosenRopeEndPos;
-    private DecorationRope christmasLightRopeInstance;
+    private DecorationRopeMaker christmasLightRopeInstance;
 
 
     private void Start()
