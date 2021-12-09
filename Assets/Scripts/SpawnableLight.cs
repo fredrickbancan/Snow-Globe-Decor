@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SpawnableLight : MonoBehaviour
 {
     [SerializeField] private Light lightReference;
-    [SerializeField] private LensFlare lightFlareReference;
+    [SerializeField] private LensFlareComponentSRP lightFlareReference;
     [SerializeField] private MeshRenderer bulbMeshReference;
     private Color lightColor;
     private float lightBrightness = 1.0F;
@@ -15,10 +16,12 @@ public class SpawnableLight : MonoBehaviour
     private float timeSinceLastFlicker = 0.0F;
     private float randomFlickerInterval = 0.0F;
     private float flickerDelta = 0.0F;
+    private static int christmasLightIndex = 0;
 
     void Start()
     {
-        RandomizeLightColor();
+        //RandomizeLightColor();
+        GetChristmasLightColor();
     }
 
     private void Update()
@@ -46,6 +49,16 @@ public class SpawnableLight : MonoBehaviour
         flickerDelta = UnityEngine.Random.Range(0, 2) == 0 ? -flickerChangeSpeed : flickerChangeSpeed;*/
     }
 
+    private void GetChristmasLightColor()
+    {
+        lightColor = LightColorManager.GetChristmasLightColor(christmasLightIndex++);
+        christmasLightIndex %= 4;
+        lightColor.a = 1.0F;
+        lightReference.color = lightColor;
+        bulbMeshReference.material.color = lightColor;
+        bulbMeshReference.material.SetColor("_EmissionColor", lightColor * 4.0F);
+    }
+
     private void RandomizeLightColor()
     {
         lightColor.r = UnityEngine.Random.Range(0.0F, 1.0F);
@@ -59,8 +72,8 @@ public class SpawnableLight : MonoBehaviour
         lightColor.b /= maxComponent;
 
         lightReference.color = lightColor;
-        lightFlareReference.color = lightColor;
         bulbMeshReference.material.color = lightColor;
+        bulbMeshReference.material.SetColor("_EmissionColor", lightColor * 4.0F);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -9,7 +9,7 @@ public class DecorationRope : MonoBehaviour
 {
     [SerializeField] private float dangleToDistanceRatio = 0.25F;
     [SerializeField] private float distanceBetweenDecor = 0.05F;
-    [SerializeField] private GameObject spawnableChristmasLightPrefab;
+    [SerializeField] private SpawnableLight spawnableChristmasLightPrefab;
     [SerializeField] private LineRenderer lineRendererPrefab;
     [SerializeField] private DecorationRopeType decorationType = DecorationRopeType.CHRISTMAS_LIGHTS;
     private Vector3 startPoint;
@@ -49,9 +49,9 @@ public class DecorationRope : MonoBehaviour
         switch (decorationType)
         {
             case DecorationRopeType.CHRISTMAS_LIGHTS:
-                return spawnableChristmasLightPrefab;
+                return spawnableChristmasLightPrefab.gameObject;
             default:
-                return spawnableChristmasLightPrefab;
+                return spawnableChristmasLightPrefab.gameObject;
         }
     }
 
