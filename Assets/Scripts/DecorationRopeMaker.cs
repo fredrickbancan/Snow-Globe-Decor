@@ -8,14 +8,17 @@ public enum DecorationRopeType
     GREEN_LIGHTS,
     AMBER_LIGHTS,
     BLUE_LIGHTS,
-    WHITE_LIGHTS
+    WHITE_LIGHTS,
+    BAUBLES
 }
 
 public class DecorationRopeMaker : MonoBehaviour
 {
     [SerializeField] private float dangleToDistanceRatio = 0.25F;
-    [SerializeField] private float distanceBetweenDecor = 0.05F;
+    [SerializeField] private float distanceBetweenLights = 0.05F;
+    [SerializeField] private float distanceBetweenDecor = 0.1F;
     [SerializeField] private SpawnableLight spawnableChristmasLightPrefab;
+    [SerializeField] private SpawnableBauble spawnableBaublePrefab;
     [SerializeField] private LineRenderer lineRendererPrefab;
 
     private Vector3 startPoint;
@@ -31,10 +34,11 @@ public class DecorationRopeMaker : MonoBehaviour
         directDist = Vector3.Distance(startPoint, endPoint);
         danglePoint = startPoint + (endPoint - startPoint) * 0.5F + (Vector3.down * directDist * dangleToDistanceRatio);
         float apprxRopeLen = ApproximateRopeLength();
-        int apprxLightCount = (int)(apprxRopeLen / distanceBetweenDecor);
-        decorDistNormalized = distanceBetweenDecor / apprxRopeLen;
+        float distBetweenDecor = drt == DecorationRopeType.BAUBLES ? distanceBetweenDecor : distanceBetweenLights;
+        int approxDecorCount = (int)(apprxRopeLen / distBetweenDecor);
+        decorDistNormalized = distBetweenDecor / apprxRopeLen;
         LineRenderer lr = Instantiate(lineRendererPrefab);
-        lr.positionCount = apprxLightCount + 1;
+        lr.positionCount = approxDecorCount + 1;
         int j = 0;
         for (float i = 0.0F; i < 1.0F; i += decorDistNormalized)
         {
@@ -50,6 +54,7 @@ public class DecorationRopeMaker : MonoBehaviour
     {
         GameObject result = null;
         SpawnableLight sl = null;
+        SpawnableBauble sb = null;
         switch (drt)
         {
             case DecorationRopeType.RANDOM_COLOR_LIGHTS:
@@ -86,6 +91,10 @@ public class DecorationRopeMaker : MonoBehaviour
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.WHITE);
                 result = sl.gameObject;
+                break;
+            case DecorationRopeType.BAUBLES:
+                sb = Instantiate(spawnableBaublePrefab, pos + Vector3.up * -0.1F, Quaternion.identity);
+                result = sb.gameObject;
                 break;
             default:
                 break;

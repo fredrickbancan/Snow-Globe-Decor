@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3675878086696405418}
   - component: {fileID: 1874970886665628393}
   m_Layer: 0
-  m_Name: DecorationRope
+  m_Name: DecorationRopeMaker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dangleToDistanceRatio: 0.25
-  distanceBetweenDecor: 0.2
+  distanceBetweenLights: 0.2
+  distanceBetweenDecor: 0.4
   spawnableChristmasLightPrefab: {fileID: 5877326306879174193, guid: 6044a67e9b5604442b79f5070b3026ed, type: 3}
+  spawnableBaublePrefab: {fileID: 4584203844784093523, guid: e2f883e5156b0594db10af182fbaa135, type: 3}
   lineRendererPrefab: {fileID: 2411837860325371963, guid: 8b331bad95f354743b938d6dd104a607, type: 3}
-  decorationType: 0
