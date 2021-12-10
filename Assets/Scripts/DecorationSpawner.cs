@@ -1,18 +1,77 @@
 using UnityEngine;
 
+public enum DecorationType
+{
+    CHRISTMAS_LIGHTS,
+    RED_LIGHTS,
+    GREEN_LIGHTS,
+    AMBER_LIGHTS,
+    BLUE_LIGHTS,
+    WHITE_LIGHTS,
+    BAUBLES,
+    SNOWMAN,
+    TREE
+}
+
 public class DecorationSpawner : MonoBehaviour
 {
     [SerializeField] private DecorationRope decorationRopePrefab;
+    [SerializeField] private GameObject snowmanPrefab;
+    [SerializeField] private GameObject treePrefab;
     [SerializeField] private Camera playerCameraReference;
     [SerializeField] private float lightPosPickMaxDist = 10.0F;
     private bool ropeStartChosen = false;
     private Vector3 chosenRopeStartPos;
     private Vector3 chosenRopeEndPos;
-    private DecorationRopeType selectedRopeType = DecorationRopeType.CHRISTMAS_LIGHTS;
+    private DecorationType selectedDecorationType = DecorationType.CHRISTMAS_LIGHTS;
 
 
     // Update is called once per frame
     void Update()
+    {
+        int ropeTypeInt = (int)selectedDecorationType;
+
+        if (Input.mouseScrollDelta.y < -0.1F)
+        {
+            ropeTypeInt--;
+            if (ropeTypeInt < 0)
+            {
+                ropeTypeInt = 0;
+            }
+            else
+            {
+                ropeStartChosen = false;
+                selectedDecorationType = (DecorationType)ropeTypeInt;
+                Debug.Log("Selected Decor Type:" + selectedDecorationType);
+                GameManager.DoMouseScrollDown();
+            }
+        }
+
+        if (Input.mouseScrollDelta.y > 0.1F)
+        {
+            ropeTypeInt++;
+            if (ropeTypeInt > 8)
+            {
+                ropeTypeInt = 8;
+            }
+            else
+            {
+                ropeStartChosen = false;
+                selectedDecorationType = (DecorationType)ropeTypeInt;
+                Debug.Log("Selected Decor Type:" + selectedDecorationType);
+                GameManager.DoMouseScrollUp();
+            }
+        }
+
+        if (selectedDecorationType == DecorationType.SNOWMAN || selectedDecorationType == DecorationType.TREE)
+        {
+            HandleInputSingleObjectMode();
+            return;
+        }
+        HandleInputRopeMode();
+    }
+
+    private void HandleInputRopeMode()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -23,33 +82,45 @@ public class DecorationSpawner : MonoBehaviour
             else
             {
                 DoPickRopeStart();
-            }        
+            }
+        }
+    }
+
+    private void HandleInputSingleObjectMode()
+    {
+        GameObject decor = null;
+        switch (selectedDecorationType)
+        { 
+            case DecorationType.SNOWMAN:
+                decor = snowmanPrefab;
+                break;
+            case DecorationType.TREE:
+                decor = treePrefab;
+                break;
+            default:
+                return;
         }
 
-        int ropeTypeInt = (int)selectedRopeType;
-
-        if (Input.mouseScrollDelta.y < -0.1F)
+        if (Input.GetMouseButtonDown(0))
         {
-            ropeTypeInt--;
-            if (ropeTypeInt > 6) ropeTypeInt = 6;
-            selectedRopeType = (DecorationRopeType)ropeTypeInt;
-            Debug.Log("Selected Decor Type:" + selectedRopeType);
-            GameManager.DoMouseScrollDown();
-        }
+            Vector3 spawnPos, norm;
+            if (!GetClickedWorldPos(out spawnPos, out norm))
+                return;
 
-        if (Input.mouseScrollDelta.y > 0.1F)
-        {
-            ropeTypeInt++;
-            if (ropeTypeInt < 0) ropeTypeInt = 0;
-            selectedRopeType = (DecorationRopeType)ropeTypeInt;
-            Debug.Log("Selected Decor Type:" + selectedRopeType);
-            GameManager.DoMouseScrollUp();
+            if (Vector3.Dot(norm, Vector3.up) < 0.5F)//only allow placements on horizontal surfaces
+                return;
+
+            Vector3 spawnToPlayer = playerCameraReference.transform.position - spawnPos;
+            spawnToPlayer.y = 0;
+            Vector3.Normalize(spawnToPlayer);
+            GameObject spawnedDecor = Instantiate(decor, spawnPos, Quaternion.identity);
+            spawnedDecor.transform.rotation *= Quaternion.LookRotation(spawnToPlayer);
         }
     }
 
     private void DoPickRopeStart()
     {
-        if(GetClickedRopeAnchorPos(out chosenRopeStartPos))
+        if(GetClickedWorldPos(out chosenRopeStartPos, out Vector3 norm))
         {
             Debug.Log(chosenRopeStartPos);
             ropeStartChosen = true;
@@ -58,23 +129,23 @@ public class DecorationSpawner : MonoBehaviour
 
     private void DoPickRopeEndAndCreate()
     {
-        if(!GetClickedRopeAnchorPos(out chosenRopeEndPos))
+        if(!GetClickedWorldPos(out chosenRopeEndPos, out Vector3 norm))
         {
             return;
         }
         DecorationRope dr = Instantiate(decorationRopePrefab);
-        dr.CreateWithPhysics(selectedRopeType, chosenRopeStartPos, chosenRopeEndPos);
+        dr.CreateWithPhysics(selectedDecorationType, chosenRopeStartPos, chosenRopeEndPos);
         chosenRopeStartPos = chosenRopeEndPos;
         chosenRopeEndPos = Vector3.zero;
     }
 
-    private bool GetClickedRopeAnchorPos(out Vector3 result)
+    private bool GetClickedWorldPos(out Vector3 pos, out Vector3 normal)
     {
         RaycastHit hit;
         bool gotHit = Physics.Raycast(playerCameraReference.transform.position + playerCameraReference.transform.forward, playerCameraReference.transform.forward, out hit, lightPosPickMaxDist);
 
-        result = hit.point + hit.normal * 0.1F;
-
+        pos = hit.point + hit.normal * 0.05F;
+        normal = hit.normal;
         return gotHit;
     }
 }

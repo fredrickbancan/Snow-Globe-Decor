@@ -1,17 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DecorationRopeType
-{ 
-    CHRISTMAS_LIGHTS,
-    RED_LIGHTS,
-    GREEN_LIGHTS,
-    AMBER_LIGHTS,
-    BLUE_LIGHTS,
-    WHITE_LIGHTS,
-    BAUBLES
-}
-
 public class DecorationRope : MonoBehaviour
 {
     [SerializeField] private float dangleToDistanceRatio = 0.25F;
@@ -41,7 +30,7 @@ public class DecorationRope : MonoBehaviour
     private float distBetweenDecor = 0.0F;
     private int simItterations = 30;
 
-    public void CreateWithPhysics(DecorationRopeType drt, Vector3 startPoint, Vector3 endPoint)
+    public void CreateWithPhysics(DecorationType drt, Vector3 startPoint, Vector3 endPoint)
     {
         isSimulatingPhysics = true;
         this.startPoint = startPoint;
@@ -50,7 +39,7 @@ public class DecorationRope : MonoBehaviour
         startToEndDir = startToEnd.normalized;
         directDist = startToEnd.magnitude;
 
-        distBetweenDecor = drt == DecorationRopeType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
+        distBetweenDecor = drt == DecorationType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
 
         int physicsDecorCount = (int)(directDist / distBetweenDecor) - 1;
         if (physicsDecorCount < 0) physicsDecorCount = 0;
@@ -113,7 +102,7 @@ public class DecorationRope : MonoBehaviour
 
     }
 
-    public void CreateBezier(DecorationRopeType drt, Vector3 startPoint, Vector3 endPoint)
+    public void CreateBezier(DecorationType drt, Vector3 startPoint, Vector3 endPoint)
     {
         isSimulatingPhysics = false;
         this.startPoint = startPoint;
@@ -121,7 +110,7 @@ public class DecorationRope : MonoBehaviour
         directDist = Vector3.Distance(startPoint, endPoint);
         danglePoint = startPoint + (endPoint - startPoint) * 0.5F + (Vector3.down * directDist * dangleToDistanceRatio);
         float apprxRopeLen = ApproximateRopeLength();
-        float distBetweenDecor = drt == DecorationRopeType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
+        float distBetweenDecor = drt == DecorationType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
         int approxDecorCount = (int)(apprxRopeLen / distBetweenDecor);
         decorDistNormalized = distBetweenDecor / apprxRopeLen;
         LineRenderer lr = Instantiate(lineRendererPrefab);
@@ -205,50 +194,50 @@ public class DecorationRope : MonoBehaviour
         }
     }
 
-    private GameObject InstantiateDecorationByType(DecorationRopeType drt, Vector3 pos)
+    private GameObject InstantiateDecorationByType(DecorationType drt, Vector3 pos)
     {
         GameObject result = null;
         SpawnableLight sl = null;
         SpawnableBauble sb = null;
         switch (drt)
         {
-            case DecorationRopeType.CHRISTMAS_LIGHTS:
+            case DecorationType.CHRISTMAS_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.CHRISTMAS_PATTERN);
                 result = sl.gameObject;
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.RED_LIGHTS:
+            case DecorationType.RED_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.RED);
                 result = sl.gameObject;
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.GREEN_LIGHTS:
+            case DecorationType.GREEN_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.GREEN);
                 result = sl.gameObject;
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.AMBER_LIGHTS:
+            case DecorationType.AMBER_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.AMBER);
                 result = sl.gameObject;
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.BLUE_LIGHTS:
+            case DecorationType.BLUE_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.BLUE);
                 result = sl.gameObject; 
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.WHITE_LIGHTS:
+            case DecorationType.WHITE_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.WHITE);
                 result = sl.gameObject;
                 ropeLineYOffset = 0.02F;
                 break;
-            case DecorationRopeType.BAUBLES:
+            case DecorationType.BAUBLES:
                 sb = Instantiate(spawnableBaublePrefab, pos, Quaternion.identity);
                 result = sb.gameObject;
                 ropeLineYOffset = 0.14F;
