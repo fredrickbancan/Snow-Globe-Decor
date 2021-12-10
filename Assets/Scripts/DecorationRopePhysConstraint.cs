@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class DecorationRopePhysConstraint : MonoBehaviour
+public struct DecorationRopePhysConstraint
 {
-    public Rigidbody rbA = null;
+    public Rigidbody rbA;
     public Vector3 rbAPrevPos;
-    public Rigidbody rbB = null;
+    public Rigidbody rbB;
     public Vector3 rbBPrevPos;
-    public float restingDist = 0.02F;
-    public float currentDist = 0.0F;
+    public float restingDist;
+    public float currentDist;
 }

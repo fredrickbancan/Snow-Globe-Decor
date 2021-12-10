@@ -4,7 +4,6 @@ using UnityEngine.Rendering;
 public enum DecorationLightType
 {
     CHRISTMAS_PATTERN,
-    RANDOM_COLORS,
     RED,
     GREEN,
     AMBER,
@@ -86,9 +85,6 @@ public class SpawnableLight : MonoBehaviour
             case DecorationLightType.CHRISTMAS_PATTERN:
                 SetColorChristmasPattern();
                 break;
-            case DecorationLightType.RANDOM_COLORS:
-                SetRandomLightColor();
-                break;
             case DecorationLightType.RED:
                 SetLightMonochrome(ChristmasColorID.RED);
                 break;
@@ -149,33 +145,6 @@ public class SpawnableLight : MonoBehaviour
         lightColor.a = 1.0F;
         lightReference.color = lightColor;
         lightReference.intensity = lightReference.intensity * (1.0F + lightBrightnessCompensation);
-    }
-
-    private void SetRandomLightColor()
-    {
-        lightColor.r = UnityEngine.Random.Range(0.0F, 1.0F);
-        lightColor.g = UnityEngine.Random.Range(0.0F, 1.0F);
-        lightColor.b = UnityEngine.Random.Range(0.0F, 1.0F);
-        lightColor.a = 1.0F;
-
-        float maxComponent = Mathf.Max(lightColor.r, Mathf.Max(lightColor.g, lightColor.b));
-        lightColor.r /= maxComponent;
-        lightColor.g /= maxComponent;
-        lightColor.b /= maxComponent;
-
-        bulbMeshReference.material.color = lightColor;
-        bulbMeshReference.material.SetColor("_EmissionColor", lightColor * 4.0F);
-
-        if(ShouldSkipMonochromeLight())
-        {
-            Destroy(lightReference.gameObject);
-            lightEnabled = false;
-            return;
-        }
-
-        lightColor.a = 1.0F;
-        lightReference.color = lightColor;
-        lightReference.intensity = lightReference.intensity * (1.0F + lightBrightnessCompensationMonochrome);
     }
 
     private void Update()

@@ -8,7 +8,7 @@ public class DecorationSpawner : MonoBehaviour
     private bool ropeStartChosen = false;
     private Vector3 chosenRopeStartPos;
     private Vector3 chosenRopeEndPos;
-    private DecorationRopeType selectedRopeType = DecorationRopeType.RANDOM_COLOR_LIGHTS;
+    private DecorationRopeType selectedRopeType = DecorationRopeType.CHRISTMAS_LIGHTS;
 
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class DecorationSpawner : MonoBehaviour
         if (Input.mouseScrollDelta.y < -0.1F)
         {
             ropeTypeInt++;
-            if (ropeTypeInt > 7) ropeTypeInt = 7;
+            if (ropeTypeInt > 6) ropeTypeInt = 6;
             selectedRopeType = (DecorationRopeType)ropeTypeInt;
             Debug.Log("Selected Decor Type:" + selectedRopeType);
         }

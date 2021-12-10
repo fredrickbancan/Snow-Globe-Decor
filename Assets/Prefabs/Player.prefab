@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2975822633617490229}
   - component: {fileID: 8085568574220156579}
   - component: {fileID: 7654582753706641550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1095462654883863394}
   - component: {fileID: 1595993774083699233}
   - component: {fileID: 4483257153910632975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 7368229437178957383}
   - component: {fileID: 7368229437178957380}
   - component: {fileID: 6404980187629265696}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

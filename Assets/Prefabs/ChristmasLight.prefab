@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5877326306879174193}
   - component: {fileID: 2374535388652038538}
   - component: {fileID: 4845777574290249532}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ChristmasLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ Rigidbody:
   m_Mass: 0.001
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3387492353543983117}
   - component: {fileID: 3798736358167439991}
   - component: {fileID: 7964390342896570420}
-  m_Layer: 2
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4916468916632777315}
   - component: {fileID: 6767299484747640713}
   - component: {fileID: 8194662118475850412}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

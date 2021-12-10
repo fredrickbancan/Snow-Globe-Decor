@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum DecorationRopeType
 { 
-    RANDOM_COLOR_LIGHTS,
     CHRISTMAS_LIGHTS,
     RED_LIGHTS,
     GREEN_LIGHTS,
@@ -22,10 +21,10 @@ public class DecorationRope : MonoBehaviour
     [SerializeField] private SpawnableLight spawnableChristmasLightPrefab;
     [SerializeField] private SpawnableBauble spawnableBaublePrefab;
     [SerializeField] private LineRenderer lineRendererPrefab;
-    [SerializeField] private DecorationRopePhysConstraint decorationPhysicsConstraintPrefab;
 
     private LineRenderer lineRenderer = null;
     private List<Rigidbody> ropeRigidBodies = null;
+    private List<Vector3> ropeRigidBodiesPrevPositions = null;
     private List<Collider> ropeColliders = null;
     private List<DecorationRopePhysConstraint> ropeConstraints = null;
     private float secondsSimulated = 0.0F;
@@ -40,7 +39,7 @@ public class DecorationRope : MonoBehaviour
     private float decorDistNormalized = 0.0F;
     private float ropeLineYOffset = 0.02F;
     private float distBetweenDecor = 0.0F;
-    private int simItterations = 10;
+    private int simItterations = 30;
 
     public void CreateWithPhysics(DecorationRopeType drt, Vector3 startPoint, Vector3 endPoint)
     {
@@ -53,7 +52,7 @@ public class DecorationRope : MonoBehaviour
 
         distBetweenDecor = drt == DecorationRopeType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
 
-        int physicsDecorCount = (int)(directDist / distBetweenDecor) - 2;
+        int physicsDecorCount = (int)(directDist / distBetweenDecor) - 1;
         if (physicsDecorCount < 0) physicsDecorCount = 0;
 
         lineRenderer = Instantiate(lineRendererPrefab);
@@ -63,18 +62,21 @@ public class DecorationRope : MonoBehaviour
         Vector3 currentDecorPos = startPoint;
         lineRenderer.SetPosition(0, currentDecorPos);
 
-        DecorationRopePhysConstraint sh = null;
+        DecorationRopePhysConstraint sh = new DecorationRopePhysConstraint();
         Rigidbody prevDecorRB = null;
         GameObject currentDecor = null;
         Rigidbody currentDecorRB = null;
         ropeRigidBodies = new List<Rigidbody>();
+        ropeRigidBodiesPrevPositions = new List<Vector3>();
         ropeColliders = new List<Collider>();
         ropeConstraints = new List<DecorationRopePhysConstraint>();
 
+       // currentDecorPos += decorStep;
         currentDecor = InstantiateDecorationByType(drt, currentDecorPos);
         currentDecorRB = currentDecor.GetComponent<Rigidbody>();
         ropeColliders.Add(currentDecor.GetComponent<Collider>());
         currentDecorRB.isKinematic = true;
+        ropeRigidBodiesPrevPositions.Add(currentDecorPos);
         currentDecorPos += decorStep;
 
         ropeRigidBodies.Add(currentDecorRB);
@@ -86,22 +88,22 @@ public class DecorationRope : MonoBehaviour
             currentDecorRB = currentDecor.GetComponent<Rigidbody>();
             ropeRigidBodies.Add(currentDecorRB);
             ropeColliders.Add(currentDecor.GetComponent<Collider>());
-            sh = Instantiate(decorationPhysicsConstraintPrefab);
             sh.rbA = prevDecorRB;
             sh.rbB = currentDecorRB;
             sh.restingDist = distBetweenDecor;
             ropeConstraints.Add(sh);
-            lineRenderer.SetPosition(i + 1, currentDecorPos);
+            lineRenderer.SetPosition(i + 1, currentDecorPos - decorStep);
+            ropeRigidBodiesPrevPositions.Add(currentDecorPos);
             currentDecorPos += decorStep;
         }
         prevDecorRB = currentDecorRB;
         currentDecor = InstantiateDecorationByType(drt, currentDecorPos);
+        ropeRigidBodiesPrevPositions.Add(currentDecorPos);
         currentDecorRB = currentDecor.GetComponent<Rigidbody>();
         currentDecorRB.isKinematic = true;
 
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, currentDecorPos);
 
-        sh = Instantiate(decorationPhysicsConstraintPrefab);
         sh.rbA = prevDecorRB;
         sh.rbB = currentDecorRB;
         sh.restingDist = distBetweenDecor;
@@ -135,7 +137,7 @@ public class DecorationRope : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!isSimulatingPhysics) return;
 
@@ -149,7 +151,7 @@ public class DecorationRope : MonoBehaviour
             lineRenderer.SetPosition(i, pos + Vector3.up * ropeLineYOffset);
         }
 
-        secondsSimulated += Time.fixedDeltaTime;
+        secondsSimulated += Time.deltaTime;
 
         //check if should kill physics sim
         if(secondsSimulated >= maxSimulationTime)
@@ -163,36 +165,44 @@ public class DecorationRope : MonoBehaviour
 
             ropeRigidBodies.Clear();
 
-            for (int i = 0; i < ropeConstraints.Count; i++)
-            {
-                Destroy(ropeConstraints[i]);
-            }
-
-            ropeConstraints.Clear();
-
             for (int i = 0; i < ropeColliders.Count; i++)
             {
                 Destroy(ropeColliders[i]);
             }
 
             ropeColliders.Clear();
+            ropeConstraints.Clear();
+            ropeRigidBodiesPrevPositions.Clear();
+            Destroy(this.gameObject);
         }
     }
 
     private void SimulateRopePhysics()
     {
-       /* for (int i = 0; i < numOfIterations; i++)
+        for (int i = 0; i < ropeRigidBodies.Count; i++)
         {
-            foreach (Joint j in joints)
+            Rigidbody p = ropeRigidBodies[i];
+            if (p.isKinematic)
+                continue;
+            Vector3 positionBeforeUpdate = p.position;
+            p.position += p.position - ropeRigidBodiesPrevPositions[i];
+            p.position += Vector3.up * Physics.gravity.y * Time.deltaTime * Time.deltaTime;
+            ropeRigidBodiesPrevPositions[i] = positionBeforeUpdate;
+        }
+
+        for (int i = 0; i < simItterations; i++)
+        {
+            foreach (DecorationRopePhysConstraint j in ropeConstraints)
             {
-                Vector3 jointCentre = (j.pointA.position + j.pointB.position) / 2;
-                Vector3 jointDirection = (j.pointA.position - j.pointB.position).normalized;
-                if (!j.pointA.locked)
-                    j.pointA.position = jointCentre + jointDirection * j.length / 2;
-                if (!j.pointB.locked)
-                    j.pointB.position = jointCentre - jointDirection * j.length / 2;
+                Vector3 jointCentre = (j.rbA.position + j.rbB.position) / 2;
+                Vector3 jointDirection = (j.rbA.position - j.rbB.position).normalized;
+                if (!j.rbA.isKinematic)
+                    j.rbA.position = jointCentre + jointDirection * (j.currentDist + distBetweenDecor) / 2;
+                if (j.rbB.isKinematic)
+                    continue;
+                j.rbB.position = jointCentre - jointDirection * (j.currentDist + distBetweenDecor) / 2;
             }
-        }*/
+        }
     }
 
     private GameObject InstantiateDecorationByType(DecorationRopeType drt, Vector3 pos)
@@ -202,12 +212,6 @@ public class DecorationRope : MonoBehaviour
         SpawnableBauble sb = null;
         switch (drt)
         {
-            case DecorationRopeType.RANDOM_COLOR_LIGHTS:
-                sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
-                sl.SetDecorationLightType(DecorationLightType.RANDOM_COLORS);
-                result = sl.gameObject;
-                ropeLineYOffset = 0.02F;
-                break;
             case DecorationRopeType.CHRISTMAS_LIGHTS:
                 sl = Instantiate(spawnableChristmasLightPrefab, pos, Quaternion.identity);
                 sl.SetDecorationLightType(DecorationLightType.CHRISTMAS_PATTERN);
@@ -247,7 +251,7 @@ public class DecorationRope : MonoBehaviour
             case DecorationRopeType.BAUBLES:
                 sb = Instantiate(spawnableBaublePrefab, pos, Quaternion.identity);
                 result = sb.gameObject;
-                ropeLineYOffset = 0.12F;
+                ropeLineYOffset = 0.14F;
                 break;
             default:
                 break;
