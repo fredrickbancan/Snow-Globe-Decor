@@ -49,8 +49,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.8
   m_Radius: 0.5
-  m_SlopeLimit: 30
-  m_StepOffset: 0.05
+  m_SlopeLimit: 15
+  m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 2975822633617490229}
-  moveSpeed: 9
+  moveSpeed: 7
   mouseSensitivity: 1
   playerCam: {fileID: 7368229437178957383}
 --- !u!114 &7654582753706641550
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c884dec006a9cdb40a0c26c24a62283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  christmasLightRopePrefab: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
+  decorationRopePrefab: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
   playerCameraReference: {fileID: 7368229437178957383}
   lightPosPickMaxDist: 10
 --- !u!1 &5461352961289583118

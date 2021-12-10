@@ -1,21 +1,15 @@
 using UnityEngine;
 
-public class DecorationRopeSpawner : MonoBehaviour
+public class DecorationSpawner : MonoBehaviour
 {
-    [SerializeField] private DecorationRopeMaker christmasLightRopePrefab;
+    [SerializeField] private DecorationRope decorationRopePrefab;
     [SerializeField] private Camera playerCameraReference;
     [SerializeField] private float lightPosPickMaxDist = 10.0F;
     private bool ropeStartChosen = false;
     private Vector3 chosenRopeStartPos;
     private Vector3 chosenRopeEndPos;
-    private DecorationRopeMaker christmasLightRopeInstance;
     private DecorationRopeType selectedRopeType = DecorationRopeType.RANDOM_COLOR_LIGHTS;
 
-
-    private void Start()
-    {
-        christmasLightRopeInstance = Instantiate(christmasLightRopePrefab);
-    }
 
     // Update is called once per frame
     void Update()
@@ -66,7 +60,8 @@ public class DecorationRopeSpawner : MonoBehaviour
         {
             return;
         }
-        christmasLightRopeInstance.Create(selectedRopeType, chosenRopeStartPos, chosenRopeEndPos);
+        DecorationRope dr = Instantiate(decorationRopePrefab);
+        dr.CreateWithPhysics(selectedRopeType, chosenRopeStartPos, chosenRopeEndPos);
         chosenRopeStartPos = chosenRopeEndPos;
         chosenRopeEndPos = Vector3.zero;
     }

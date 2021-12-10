@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
 
         Vector3 moveDir = transform.right * moveInput.x + transform.forward * moveInput.y;
         controller.Move(moveDir * moveSpeed * Time.deltaTime);
+        controller.Move(Vector3.up * -9.8F);
 
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;

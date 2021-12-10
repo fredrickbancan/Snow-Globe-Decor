@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4923961338082602571}
   - component: {fileID: 5877326306879174193}
+  - component: {fileID: 2374535388652038538}
+  - component: {fileID: 4845777574290249532}
   m_Layer: 0
   m_Name: ChristmasLight
   m_TagString: Untagged
@@ -47,8 +49,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightReference: {fileID: 6767299484747640713}
-  lightFlareReference: {fileID: 0}
   bulbMeshReference: {fileID: 7964390342896570420}
+--- !u!135 &2374535388652038538
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310457403910858895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4845777574290249532
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310457403910858895}
+  serializedVersion: 2
+  m_Mass: 0.001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2936913529998742770
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +244,7 @@ Light:
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 11
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
