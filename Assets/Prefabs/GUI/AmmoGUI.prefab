@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ammoGuiIcons:
-  - {fileID: 0}
   - {fileID: 7214990155790126513}
   - {fileID: 7608786567378680532}
   - {fileID: 126735982883717377}
@@ -123,6 +122,14 @@ MonoBehaviour:
   - {fileID: 7974768792203232579}
   - {fileID: 7386023329687106822}
   - {fileID: 1448777825715530356}
+  - {fileID: 4935123003735200728}
+  - {fileID: 5656666843548055273}
+  selectIconSound:
+    name: SelectAmmo_sfx
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &3570105677006924840
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +308,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f9515c7b4561e447b796bad78b353c2, type: 3}
+--- !u!114 &4935123003735200728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6099557876601578785, guid: 9f9515c7b4561e447b796bad78b353c2, type: 3}
+  m_PrefabInstance: {fileID: 1213983617592276729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d696623371b85446b521ffd23d173f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5813330386763498631 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4644889640329736830, guid: 9f9515c7b4561e447b796bad78b353c2, type: 3}
@@ -1194,6 +1212,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecdde79a2ac5f124b8971145a38ec778, type: 3}
+--- !u!114 &5656666843548055273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2363458634271753138, guid: ecdde79a2ac5f124b8971145a38ec778, type: 3}
+  m_PrefabInstance: {fileID: 7947786391087248731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d696623371b85446b521ffd23d173f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6507852716861186486 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3755082956836836589, guid: ecdde79a2ac5f124b8971145a38ec778, type: 3}

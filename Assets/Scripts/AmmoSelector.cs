@@ -6,11 +6,14 @@ public class AmmoSelector : MonoBehaviour
 {
     [SerializeField] AmmoGui[] ammoGuiIcons;
     private int currentSelectedIcon = 0;
+    public GameSound selectIconSound;
 
     private void Awake()
     {
         GameManager.mouseScrollUp += NextIcon;
         GameManager.mouseScrollDown += PrevIcon;
+
+        ammoGuiIcons[currentSelectedIcon].Selected();
     }
 
     private void OnDestroy()
@@ -38,6 +41,7 @@ public class AmmoSelector : MonoBehaviour
         }
 
         ammoGuiIcons[currentSelectedIcon].Selected();
+        SoundManager.Instance.PlaySound2D(selectIconSound);
     }
 
     private void PrevIcon()
@@ -53,5 +57,6 @@ public class AmmoSelector : MonoBehaviour
         }
 
         ammoGuiIcons[currentSelectedIcon].Selected();
+        SoundManager.Instance.PlaySound2D(selectIconSound);
     }
 }
