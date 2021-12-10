@@ -25,11 +25,13 @@ public class PlayerInput : MonoBehaviour
         footstepSound = GetComponent<AudioSource>();
         GameManager.beginGame += OnBeginGame;
         GameManager.camTweenStart += OnCamTweenStart;
+        GameManager.tableTopMode += OnTableTopView;
     }
     private void OnDestroy()
     {
         GameManager.beginGame -= OnBeginGame;
         GameManager.camTweenStart -= OnCamTweenStart;
+        GameManager.tableTopMode -= OnTableTopView;
     }
 
     private void OnBeginGame()
@@ -40,6 +42,12 @@ public class PlayerInput : MonoBehaviour
     private void OnCamTweenStart()
     {
         currentInputMode = PlayerInputMode.CAMERA_TWEENING;
+        GameManager.Instance_HideHud();
+    }
+
+    private void OnTableTopView()
+    {
+        currentInputMode = PlayerInputMode.TABLETOP_VIEW;
         GameManager.Instance_HideHud();
     }
 
@@ -134,5 +142,6 @@ public class PlayerInput : MonoBehaviour
     private void HandleInput_TABLETOP_VIEW()
     {
         HandlePauseRequestInput();
+        GameManager.Instance_HideHud();
     }
 }

@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
 
     private bool gamePaused = false;
     private bool inGameHudVisible = true;
-    private bool tableTopViewing = false;
 
     private void Awake()
     {
@@ -63,29 +62,25 @@ public class GameManager : MonoBehaviour
 
     public void ToggleTableView()
     {
-        if(tableTopViewing)
+        if(currentCam == playerTableTopCam)
         {
-            tableTopViewing = false;
             UnPauseGame();
             pauseMenu.SetActive(false);
             inGameHud.SetActive(false);
             mainMenu.SetActive(false);
-            currentCam = playerTableTopCam;
-            tweenCam.transform.position = currentCam.transform.position;
-            tweenCam.transform.rotation = currentCam.transform.rotation;
+            tweenCam.transform.position = playerTableTopCam.transform.position;
+            tweenCam.transform.rotation = playerTableTopCam.transform.rotation;
             tweenCam.transform.DOMove(playerGlobeCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToPlayerCam);
             tweenCam.transform.DOLocalRotate(playerGlobeCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
         }
         else
         {
-            tableTopViewing = true;
             UnPauseGame();
             pauseMenu.SetActive(false);
             inGameHud.SetActive(false);
             mainMenu.SetActive(false);
-            currentCam = playerGlobeCam;
-            tweenCam.transform.position = currentCam.transform.position;
-            tweenCam.transform.rotation = currentCam.transform.rotation;
+            tweenCam.transform.position = playerGlobeCam.transform.position;
+            tweenCam.transform.rotation = playerGlobeCam.transform.rotation;
             tweenCam.transform.DOMove(playerTableTopCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToTableTopCam);
             tweenCam.transform.DOLocalRotate(playerTableTopCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
         }
@@ -119,7 +114,7 @@ public class GameManager : MonoBehaviour
         tweenCam.transform.DOMove(mainMenuCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToMainMenuCam).OnComplete(ReloadWorldAfterQuitToMainMenu);
         tweenCam.transform.DOLocalRotate(mainMenuCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;;
+        Cursor.visible = true;
     }
 
     private void ReloadWorldAfterQuitToMainMenu()
