@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private bool gamePaused = false;
     private bool inGameHudVisible = true;
 
+    [SerializeField] public GameSound zoomInSound;
+    [SerializeField] public GameSound zoomOutSound;
+
     private void Awake()
     {
         if (instance == null)
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour
             tweenCam.transform.rotation = playerTableTopCam.transform.rotation;
             tweenCam.transform.DOMove(playerGlobeCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToPlayerCam);
             tweenCam.transform.DOLocalRotate(playerGlobeCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+            SoundManager.Instance.PlaySound2D(zoomInSound);
         }
         else
         {
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
             tweenCam.transform.rotation = playerGlobeCam.transform.rotation;
             tweenCam.transform.DOMove(playerTableTopCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToTableTopCam);
             tweenCam.transform.DOLocalRotate(playerTableTopCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+            SoundManager.Instance.PlaySound2D(zoomOutSound);
         }
     }
 
@@ -115,6 +120,7 @@ public class GameManager : MonoBehaviour
         tweenCam.transform.DOLocalRotate(mainMenuCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        SoundManager.Instance.PlaySound2D(zoomOutSound);
     }
 
     private void ReloadWorldAfterQuitToMainMenu()
@@ -139,6 +145,7 @@ public class GameManager : MonoBehaviour
         tweenCam.transform.rotation = currentCam.transform.rotation;
         tweenCam.transform.DOMove(playerGlobeCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToPlayerCam);
         tweenCam.transform.DOLocalRotate(playerGlobeCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+        SoundManager.Instance.PlaySound2D(zoomInSound);
     }
 
     private void SwapToTweenCam()

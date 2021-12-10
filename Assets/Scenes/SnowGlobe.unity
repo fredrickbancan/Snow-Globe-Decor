@@ -1776,6 +1776,18 @@ MonoBehaviour:
   playerTableTopCam: {fileID: 1059138488}
   tweenCam: {fileID: 1008656027}
   camTweenSpeed: 2
+  zoomInSound:
+    name: CameraZoomIn_sfx
+    volume: 0.6
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: 2610155613306891409, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  zoomOutSound:
+    name: CameraZoomOut_sfx
+    volume: 0.6
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: 2610155613306891409, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &748099489
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,7 +4202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
       propertyPath: spawnTreeSound.volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
       propertyPath: spawnSnowmanSound.name
@@ -4206,7 +4218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
       propertyPath: spawnSnowmanSound.volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
       propertyPath: ropeStartSound.mixerGroup
