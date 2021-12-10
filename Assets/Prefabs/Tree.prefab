@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 4158514900586121839}
   - component: {fileID: 2066803336975066401}
   m_Layer: 0
-  m_Name: furTreeSmall
+  m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

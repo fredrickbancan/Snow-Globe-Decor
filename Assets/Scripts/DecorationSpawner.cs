@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public enum DecorationType
 {
@@ -168,6 +169,8 @@ public class DecorationSpawner : MonoBehaviour
             spawnToPlayer.y = 0;
             Vector3.Normalize(spawnToPlayer);
             GameObject spawnedDecor = Instantiate(decor, spawnPos, Quaternion.identity);
+            spawnedDecor.transform.localScale = Vector3.zero;
+            spawnedDecor.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.2f).SetEase(Ease.OutBack);
             spawnedDecor.transform.rotation *= Quaternion.LookRotation(spawnToPlayer);
 
             if (selectedDecorationType == DecorationType.SNOWMAN)
