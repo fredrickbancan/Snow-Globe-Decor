@@ -228,9 +228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e3f597ea898884a82f0725c0f4fb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixerGroup: {fileID: 0}
-  mixer: {fileID: 0}
-  soundPlayerPrefab: {fileID: 0}
+  mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  mixer: {fileID: 24100000, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  soundPlayerPrefab: {fileID: 5197653205954287435, guid: 9076f582735e1214f8ee82377ad1a946, type: 3}
 --- !u!4 &53594573
 Transform:
   m_ObjectHideFlags: 0
