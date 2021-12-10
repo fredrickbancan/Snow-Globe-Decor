@@ -1,7 +1,6 @@
 
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 [Serializable]
 struct ChristmasColors
@@ -47,8 +46,6 @@ public class ChristmasColorManager : MonoBehaviour
         christmasDecorationColors[2] = editorChristmasDecorationColors.amberColor;
         christmasDecorationColors[3] = editorChristmasDecorationColors.blueColor;
         christmasDecorationColors[4] = editorChristmasDecorationColors.whiteColor;
-
-        SpawnableLight.SetGraphicsLevel(GraphicsTier.Tier1);
     }
 
 

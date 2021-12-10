@@ -1,17 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject inGameHud;
+    [SerializeField] private GameObject mainMenu;
     private static GameManager instance = null;
     public static event Action beginGame;
     public static event Action snowglobeMode;
     public static event Action decorMode;
     public static event Action takePhoto;
-    public static event Action mouseScrollUp;
-    public static event Action mouseScrollDown;
+    public static event Action weaponChangeNext;
+    public static event Action weaponChangePrev;
 
     private bool gamePaused = false;
     private bool inGameHudVisible = true;
@@ -24,11 +27,50 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
             DontDestroyOnLoad(pauseMenu);
             DontDestroyOnLoad(inGameHud);
+            DontDestroyOnLoad(mainMenu);
             pauseMenu.SetActive(false);
             UnPauseGame();
             return;
         }
+        Destroy(pauseMenu);
+        Destroy(inGameHud);
+        Destroy(mainMenu);
         Destroy(this.gameObject);
+    }
+
+    public static void Instance_QuitToMainMenu()
+    {
+        instance.QuitToMainMenu();
+    }
+
+    public void QuitToMainMenu()
+    {
+        ReloadWorld();
+        UnPauseGame();
+        pauseMenu.SetActive(false);
+        inGameHud.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    public static void Instance_EnterSnowGlobe()
+    {
+        instance.EnterSnowGlobe();
+    }
+
+    public void EnterSnowGlobe()
+    {
+
+    }
+
+
+    public static void Instance_SetGraphicsLevel(GraphicsTier tier)
+    {
+        instance.SetGraphicsLevel(tier);
+    }
+
+    public void SetGraphicsLevel(GraphicsTier tier)
+    {
+        SpawnableLight.SetGraphicsLevel(tier);
     }
 
     public static void Instance_ToggleHudVisible()
@@ -121,6 +163,11 @@ public class GameManager : MonoBehaviour
         PauseGame();
     }
 
+    public void ReloadWorld()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void QuitGame()
     {
         // save any game data here
@@ -168,19 +215,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void DoMouseScrollUp()
+    public static void DoWeaponScrollNext()
     {
-        if (mouseScrollUp != null)
+        if (weaponChangeNext != null)
         {
-            mouseScrollUp();
+            weaponChangeNext();
         }
     }
 
-    public static void DoMouseScrollDown()
+    public static void DoWeaponScrollPrev()
     {
-        if (mouseScrollDown != null)
+        if (weaponChangePrev != null)
         {
-            mouseScrollDown();
+            weaponChangePrev();
         }
     }
 }

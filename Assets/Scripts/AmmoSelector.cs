@@ -10,16 +10,16 @@ public class AmmoSelector : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.mouseScrollUp += NextIcon;
-        GameManager.mouseScrollDown += PrevIcon;
+        GameManager.weaponChangeNext += NextIcon;
+        GameManager.weaponChangePrev += PrevIcon;
 
         ammoGuiIcons[currentSelectedIcon].Selected();
     }
 
     private void OnDestroy()
     {
-        GameManager.mouseScrollUp -= NextIcon;
-        GameManager.mouseScrollDown -= PrevIcon;
+        GameManager.weaponChangeNext -= NextIcon;
+        GameManager.weaponChangePrev -= PrevIcon;
     }
 
     // Update is called once per frame

@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170a975ca113cc84cac81286d2316fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decorSpawner: {fileID: 7654582753706641550}
   controller: {fileID: 2975822633617490229}
   moveSpeed: 7
   mouseSensitivity: 1
@@ -92,6 +93,36 @@ MonoBehaviour:
   ropeIndicatorLengthToDangleRatio: 0.15
   playerCameraReference: {fileID: 7368229437178957383}
   lightPosPickMaxDist: 10
+  ropeStartSound:
+    name: 
+    volume: 0
+    pitch: 0
+    spatialBlend: 0
+    mixerGroup: {fileID: 0}
+  ropeEndSound:
+    name: 
+    volume: 0
+    pitch: 0
+    spatialBlend: 0
+    mixerGroup: {fileID: 0}
+  spawnRopeSound:
+    name: 
+    volume: 0
+    pitch: 0
+    spatialBlend: 0
+    mixerGroup: {fileID: 0}
+  spawnSnowmanSound:
+    name: 
+    volume: 0
+    pitch: 0
+    spatialBlend: 0
+    mixerGroup: {fileID: 0}
+  spawnTreeSound:
+    name: 
+    volume: 0
+    pitch: 0
+    spatialBlend: 0
+    mixerGroup: {fileID: 0}
 --- !u!1 &5461352961289583118
 GameObject:
   m_ObjectHideFlags: 0

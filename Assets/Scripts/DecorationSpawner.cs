@@ -47,45 +47,53 @@ public class DecorationSpawner : MonoBehaviour
         ropeEndAnchorIndicator = Instantiate(ropeAnchorIndicatorPrefab);
         ropeEndAnchorIndicator.transform.position = Vector3.zero;
         ropeIndicator = Instantiate(ropeIndicatorPrefab);
+        GameManager.weaponChangeNext += OnWeaponChangeNext;
+        GameManager.weaponChangePrev += OnWeaponChangePrev;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
+    {
+        GameManager.weaponChangeNext -= OnWeaponChangeNext;
+        GameManager.weaponChangePrev -= OnWeaponChangePrev;
+
+    }
+
+    private void OnWeaponChangeNext()
     {
         int ropeTypeInt = (int)selectedDecorationType;
-
-        if (Input.mouseScrollDelta.y < -0.1F)
+        ropeTypeInt++;
+        if (ropeTypeInt > 8)
         {
-            ropeTypeInt--;
-            if (ropeTypeInt < 0)
-            {
-                ropeTypeInt = 0;
-            }
-            else
-            {
-                ropeStartChosen = false;
-                selectedDecorationType = (DecorationType)ropeTypeInt;
-                Debug.Log("Selected Decor Type:" + selectedDecorationType);
-                GameManager.DoMouseScrollDown();
-            }
+            ropeTypeInt = 8;
         }
-
-        if (Input.mouseScrollDelta.y > 0.1F)
+        else
         {
-            ropeTypeInt++;
-            if (ropeTypeInt > 8)
-            {
-                ropeTypeInt = 8;
-            }
-            else
-            {
-                ropeStartChosen = false;
-                selectedDecorationType = (DecorationType)ropeTypeInt;
-                Debug.Log("Selected Decor Type:" + selectedDecorationType);
-                GameManager.DoMouseScrollUp();
-            }
+            OnSelectedDecorationChanged(ropeTypeInt);
         }
+    }
 
+    private void OnWeaponChangePrev()
+    {
+        int ropeTypeInt = (int)selectedDecorationType;
+        ropeTypeInt--;
+        if (ropeTypeInt < 0)
+        {
+            ropeTypeInt = 0;
+        }
+        else
+        {
+            OnSelectedDecorationChanged(ropeTypeInt);
+        }
+    }
+
+    private void OnSelectedDecorationChanged(int ropeTypeInt)
+    {
+        ropeStartChosen = false;
+        selectedDecorationType = (DecorationType)ropeTypeInt;
+    }
+
+    public void HandleInput()
+    {
         if (selectedDecorationType == DecorationType.SNOWMAN || selectedDecorationType == DecorationType.TREE)
         {
             HandleInputSingleObjectMode();

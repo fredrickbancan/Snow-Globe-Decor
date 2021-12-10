@@ -10,6 +10,7 @@ public enum PlayerInputMode
 
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] private DecorationSpawner decorSpawner;
     [SerializeField] private CharacterController controller;
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] float mouseSensitivity = 1.0f;
@@ -88,6 +89,18 @@ public class PlayerInput : MonoBehaviour
                 footstepSound.Play();
             }
         }
+
+        if (Input.mouseScrollDelta.y > 0.1F)
+        {
+            GameManager.DoWeaponScrollNext();
+        }
+
+        if (Input.mouseScrollDelta.y < -0.1F)
+        {
+            GameManager.DoWeaponScrollPrev();
+        }
+
+        decorSpawner.HandleInput();
     }
 
     private void HandleInput_IN_MENU()
