@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SnowGlobe.unity
+    guid: 25622bf6a81f4f74d8d638e39ca696cb
   m_configObjects: {}
