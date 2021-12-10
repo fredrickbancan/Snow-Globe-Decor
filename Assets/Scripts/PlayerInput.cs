@@ -1,11 +1,20 @@
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public enum PlayerInputMode
+{
+    IN_GLOBE,
+    IN_MENU,
+    CAMERA_TWEENING,
+    TABLETOP_VIEW
+}
+
+public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] float mouseSensitivity = 1.0f;
     [SerializeField] private Camera playerCam;
+    private PlayerInputMode currentInputMode = PlayerInputMode.IN_GLOBE;
     private float xRotation = 0.0f;
     private AudioSource footstepSound = null;
     [SerializeField] private AudioClip[] footstepSounds = null;
@@ -15,14 +24,43 @@ public class PlayerMove : MonoBehaviour
         footstepSound = GetComponent<AudioSource>();
     }
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     void Update()
     {
+        switch (currentInputMode)
+        {
+            case PlayerInputMode.IN_GLOBE:
+                HandleInput_IN_GLOBE();
+                break;
+            case PlayerInputMode.IN_MENU:
+                HandleInput_IN_MENU();
+                break;
+            case PlayerInputMode.CAMERA_TWEENING:
+                HandleInput_CAMERA_TWEENING();
+                break;
+            case PlayerInputMode.TABLETOP_VIEW:
+                HandleInput_TABLETOP_VIEW();
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+    private void HandlePauseRequestInput()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.Instance_TogglePauseGame();
+        }
+    }
+
+    private void HandleInput_IN_GLOBE()
+    {
+        HandlePauseRequestInput();
+
+        if (GameManager.Instance_GetIsPaused())
+            return;
+
         Vector2 moveInput;
         moveInput.x = Input.GetAxis("Horizontal");
         moveInput.y = Input.GetAxis("Vertical");
@@ -48,7 +86,22 @@ public class PlayerMove : MonoBehaviour
                 int totalStepSounds = footstepSounds.Length;
                 footstepSound.clip = footstepSounds[Random.Range(0, totalStepSounds)];
                 footstepSound.Play();
-            }    
+            }
         }
+    }
+
+    private void HandleInput_IN_MENU()
+    {
+        HandlePauseRequestInput();
+    }
+
+    private void HandleInput_CAMERA_TWEENING()
+    {
+
+    }
+
+    private void HandleInput_TABLETOP_VIEW()
+    {
+        HandlePauseRequestInput();
     }
 }

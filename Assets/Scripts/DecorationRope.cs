@@ -18,7 +18,7 @@ public class DecorationRope : MonoBehaviour
     private List<DecorationRopePhysConstraint> ropeConstraints = null;
     private float secondsSimulated = 0.0F;
     private bool isSimulatingPhysics = false;
-
+    private float shortRopeCompensation = 0.025F;//value used for giving shorter ropes more slack
     private Vector3 startPoint;
     private Vector3 endPoint;
     private Vector3 danglePoint;
@@ -38,6 +38,11 @@ public class DecorationRope : MonoBehaviour
         startToEnd = endPoint - startPoint;
         startToEndDir = startToEnd.normalized;
         directDist = startToEnd.magnitude;
+
+        if (directDist <= 0.001F) directDist = 0.001F;
+        float c = shortRopeCompensation;
+        shortRopeCompensation = shortRopeCompensation / directDist;
+        if (shortRopeCompensation > c) shortRopeCompensation = c;
 
         distBetweenDecor = drt == DecorationType.BAUBLES ? distanceBetweenBaubles : distanceBetweenLights;
 
@@ -179,6 +184,7 @@ public class DecorationRope : MonoBehaviour
             ropeRigidBodiesPrevPositions[i] = positionBeforeUpdate;
         }
 
+        float c = distBetweenDecor + shortRopeCompensation;
         for (int i = 0; i < simItterations; i++)
         {
             foreach (DecorationRopePhysConstraint j in ropeConstraints)
@@ -186,10 +192,10 @@ public class DecorationRope : MonoBehaviour
                 Vector3 jointCentre = (j.rbA.position + j.rbB.position) / 2;
                 Vector3 jointDirection = (j.rbA.position - j.rbB.position).normalized;
                 if (!j.rbA.isKinematic)
-                    j.rbA.position = jointCentre + jointDirection * (j.currentDist + distBetweenDecor) / 2;
+                    j.rbA.position = jointCentre + jointDirection * (j.currentDist + c) / 2;
                 if (j.rbB.isKinematic)
                     continue;
-                j.rbB.position = jointCentre - jointDirection * (j.currentDist + distBetweenDecor) / 2;
+                j.rbB.position = jointCentre - jointDirection * (j.currentDist + c) / 2;
             }
         }
     }
@@ -238,7 +244,7 @@ public class DecorationRope : MonoBehaviour
                 ropeLineYOffset = 0.02F;
                 break;
             case DecorationType.BAUBLES:
-                sb = Instantiate(spawnableBaublePrefab, pos, Quaternion.identity);
+                sb = Instantiate(spawnableBaublePrefab, pos + Vector3.up * -0.05F, Quaternion.identity);
                 result = sb.gameObject;
                 ropeLineYOffset = 0.14F;
                 break;
