@@ -7,6 +7,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float mouseSensitivity = 1.0f;
     [SerializeField] private Camera playerCam;
     private float xRotation = 0.0f;
+    private AudioSource footstepSound = null;
+    [SerializeField] private AudioClip[] footstepSounds = null;
+
+    private void Awake()
+    {
+        footstepSound = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -32,6 +39,16 @@ public class PlayerMove : MonoBehaviour
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
 
         transform.Rotate(Vector3.up * mouseX);
+
+        //Cycle footstep sounds while walking
+        if (moveInput.x != 0 || moveInput.y != 0)
+        {
+            if (!footstepSound.isPlaying)
+            {
+                int totalStepSounds = footstepSounds.Length;
+                footstepSound.clip = footstepSounds[Random.Range(0, totalStepSounds)];
+                footstepSound.Play();
+            }    
+        }
     }
-    
 }
