@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject inGameHud;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject creditsCanvas;
     [SerializeField] private Camera mainMenuCam;
     [SerializeField] private Camera playerGlobeCam;
     [SerializeField] private Camera playerTableTopCam;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(pauseMenu);
             DontDestroyOnLoad(inGameHud);
             DontDestroyOnLoad(mainMenu);
+            DontDestroyOnLoad(creditsCanvas);
             pauseMenu.SetActive(false);
             inGameHud.SetActive(false);
             UnPauseGame();

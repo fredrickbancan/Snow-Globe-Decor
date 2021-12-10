@@ -1771,6 +1771,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 3293485606403042223}
   inGameHud: {fileID: 773539551}
   mainMenu: {fileID: 1546355081}
+  creditsCanvas: {fileID: 1302602416}
   mainMenuCam: {fileID: 2113612758}
   playerGlobeCam: {fileID: 773400599}
   playerTableTopCam: {fileID: 1059138488}
