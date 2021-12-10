@@ -24,16 +24,23 @@ public class PlayerInput : MonoBehaviour
     {
         footstepSound = GetComponent<AudioSource>();
         GameManager.beginGame += OnBeginGame;
+        GameManager.camTweenStart += OnCamTweenStart;
     }
     private void OnDestroy()
     {
         GameManager.beginGame -= OnBeginGame;
+        GameManager.camTweenStart -= OnCamTweenStart;
     }
 
     private void OnBeginGame()
     {
         currentInputMode = PlayerInputMode.IN_GLOBE;
         GameManager.Instance_MakeHudVisible();
+    }
+    private void OnCamTweenStart()
+    {
+        currentInputMode = PlayerInputMode.CAMERA_TWEENING;
+        GameManager.Instance_HideHud();
     }
 
     void Update()

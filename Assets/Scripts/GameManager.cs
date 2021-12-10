@@ -18,13 +18,15 @@ public class GameManager : MonoBehaviour
     private static GameManager instance = null;
     public static event Action beginGame;
     public static event Action snowglobeMode;
-    public static event Action decorMode;
+    public static event Action tableTopMode;
+    public static event Action camTweenStart;
     public static event Action takePhoto;
     public static event Action weaponChangeNext;
     public static event Action weaponChangePrev;
 
     private bool gamePaused = false;
     private bool inGameHudVisible = true;
+    private bool tableTopViewing = false;
 
     private void Awake()
     {
@@ -55,12 +57,37 @@ public class GameManager : MonoBehaviour
 
     public static void Instance_ToggleTableView()
     {
-
+        instance.ToggleTableView();
     }
 
     public void ToggleTableView()
     {
-
+        if(tableTopViewing)
+        {
+            tableTopViewing = false;
+            UnPauseGame();
+            pauseMenu.SetActive(false);
+            inGameHud.SetActive(false);
+            mainMenu.SetActive(false);
+            currentCam = playerTableTopCam;
+            tweenCam.transform.position = currentCam.transform.position;
+            tweenCam.transform.rotation = currentCam.transform.rotation;
+            tweenCam.transform.DOMove(playerGlobeCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToPlayerCam);
+            tweenCam.transform.DOLocalRotate(playerGlobeCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+        }
+        else
+        {
+            tableTopViewing = true;
+            UnPauseGame();
+            pauseMenu.SetActive(false);
+            inGameHud.SetActive(false);
+            mainMenu.SetActive(false);
+            currentCam = playerGlobeCam;
+            tweenCam.transform.position = currentCam.transform.position;
+            tweenCam.transform.rotation = currentCam.transform.rotation;
+            tweenCam.transform.DOMove(playerTableTopCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToTableTopCam);
+            tweenCam.transform.DOLocalRotate(playerTableTopCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+        }
     }
 
     public static void Instance_ProvideCameras(Camera mainMenuCam, Camera playerCam, Camera tableCam, Camera tweenCam)
@@ -125,6 +152,7 @@ public class GameManager : MonoBehaviour
         playerTableTopCam.enabled = false;
         tweenCam.enabled = true;
         currentCam = tweenCam;
+        DoCamTweenStart();
     }
 
     private void SwapToMainMenuCam()
@@ -153,6 +181,7 @@ public class GameManager : MonoBehaviour
         playerTableTopCam.enabled = true;
         tweenCam.enabled = false;
         currentCam = playerTableTopCam;
+        DoTableTopMode();
     }
 
     public static void Instance_SetGraphicsLevel(GraphicsTier tier)
@@ -291,11 +320,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void DoDecorMode()
+    public static void DoCamTweenStart()
     {
-        if (decorMode != null)
+        if (camTweenStart != null)
         {
-            decorMode();
+            camTweenStart();
+        }
+    }
+
+    public static void DoTableTopMode()
+    {
+        if (tableTopMode != null)
+        {
+            tableTopMode();
         }
     }
 
