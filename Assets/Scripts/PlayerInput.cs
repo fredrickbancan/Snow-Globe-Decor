@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float moveSpeed = 12.0f;
     [SerializeField] float mouseSensitivity = 1.0f;
     [SerializeField] private Camera playerCam;
-    private PlayerInputMode currentInputMode = PlayerInputMode.IN_GLOBE;
+    private PlayerInputMode currentInputMode = PlayerInputMode.IN_MENU;
     private float xRotation = 0.0f;
     private AudioSource footstepSound = null;
     [SerializeField] private AudioClip[] footstepSounds = null;
@@ -23,6 +23,17 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         footstepSound = GetComponent<AudioSource>();
+        GameManager.beginGame += OnBeginGame;
+    }
+    private void OnDestroy()
+    {
+        GameManager.beginGame -= OnBeginGame;
+    }
+
+    private void OnBeginGame()
+    {
+        currentInputMode = PlayerInputMode.IN_GLOBE;
+        GameManager.Instance_MakeHudVisible();
     }
 
     void Update()
@@ -33,7 +44,7 @@ public class PlayerInput : MonoBehaviour
                 HandleInput_IN_GLOBE();
                 break;
             case PlayerInputMode.IN_MENU:
-                HandleInput_IN_MENU();
+                HandleInput_IN_MAINMENU();
                 break;
             case PlayerInputMode.CAMERA_TWEENING:
                 HandleInput_CAMERA_TWEENING();
@@ -103,9 +114,9 @@ public class PlayerInput : MonoBehaviour
         decorSpawner.HandleInput();
     }
 
-    private void HandleInput_IN_MENU()
+    private void HandleInput_IN_MAINMENU()
     {
-        HandlePauseRequestInput();
+
     }
 
     private void HandleInput_CAMERA_TWEENING()

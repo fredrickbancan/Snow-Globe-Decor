@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,6 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject inGameHud;
     [SerializeField] private GameObject mainMenu;
+    [SerializeField] private Camera mainMenuCam;
+    [SerializeField] private Camera playerGlobeCam;
+    [SerializeField] private Camera playerTableTopCam;
+    [SerializeField] private Camera tweenCam;
+    [SerializeField] private float camTweenSpeed = 2.0F;
+    private Camera currentCam;
     private static GameManager instance = null;
     public static event Action beginGame;
     public static event Action snowglobeMode;
@@ -29,13 +36,44 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(inGameHud);
             DontDestroyOnLoad(mainMenu);
             pauseMenu.SetActive(false);
+            inGameHud.SetActive(false);
             UnPauseGame();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            currentCam = mainMenuCam;
+            mainMenuCam.enabled = true;
+            playerGlobeCam.enabled = false;
+            playerTableTopCam.enabled = false;
+            tweenCam.enabled = false;
             return;
         }
         Destroy(pauseMenu);
         Destroy(inGameHud);
         Destroy(mainMenu);
         Destroy(this.gameObject);
+    }
+
+    public static void Instance_ToggleTableView()
+    {
+
+    }
+
+    public void ToggleTableView()
+    {
+
+    }
+
+    public static void Instance_ProvideCameras(Camera mainMenuCam, Camera playerCam, Camera tableCam, Camera tweenCam)
+    {
+        instance.ProvideCameras( mainMenuCam, playerCam, tableCam,tweenCam);
+    }
+
+    public void ProvideCameras(Camera mainMenuCam, Camera playerCam, Camera tableCam, Camera tweenCam)
+    {
+        this.mainMenuCam = mainMenuCam;
+        playerGlobeCam = playerCam;
+        playerTableTopCam = tableCam;
+        this.tweenCam = tweenCam;
     }
 
     public static void Instance_QuitToMainMenu()
@@ -45,11 +83,21 @@ public class GameManager : MonoBehaviour
 
     public void QuitToMainMenu()
     {
-        ReloadWorld();
         UnPauseGame();
         pauseMenu.SetActive(false);
         inGameHud.SetActive(false);
+        tweenCam.transform.position = currentCam.transform.position;
+        tweenCam.transform.rotation = currentCam.transform.rotation;
+        tweenCam.transform.DOMove(mainMenuCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToMainMenuCam).OnComplete(ReloadWorldAfterQuitToMainMenu);
+        tweenCam.transform.DOLocalRotate(mainMenuCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;;
+    }
+
+    private void ReloadWorldAfterQuitToMainMenu()
+    {
         mainMenu.SetActive(true);
+        ReloadWorld();
     }
 
     public static void Instance_EnterSnowGlobe()
@@ -59,9 +107,53 @@ public class GameManager : MonoBehaviour
 
     public void EnterSnowGlobe()
     {
-
+        UnPauseGame();
+        pauseMenu.SetActive(false);
+        inGameHud.SetActive(true);
+        mainMenu.SetActive(false);
+        currentCam = mainMenuCam;
+        tweenCam.transform.position = currentCam.transform.position;
+        tweenCam.transform.rotation = currentCam.transform.rotation;
+        tweenCam.transform.DOMove(playerGlobeCam.transform.position, camTweenSpeed).SetEase(Ease.InOutCubic).OnStart(SwapToTweenCam).OnComplete(SwapToPlayerCam);
+        tweenCam.transform.DOLocalRotate(playerGlobeCam.transform.rotation.eulerAngles, camTweenSpeed).SetEase(Ease.InOutCubic);
     }
 
+    private void SwapToTweenCam()
+    {
+        mainMenuCam.enabled = false;
+        playerGlobeCam.enabled = false;
+        playerTableTopCam.enabled = false;
+        tweenCam.enabled = true;
+        currentCam = tweenCam;
+    }
+
+    private void SwapToMainMenuCam()
+    {
+        mainMenuCam.enabled = true;
+        playerGlobeCam.enabled = false;
+        playerTableTopCam.enabled = false;
+        tweenCam.enabled = false;
+        currentCam = mainMenuCam;
+    }
+
+    private void SwapToPlayerCam()
+    {
+        mainMenuCam.enabled = false;
+        playerGlobeCam.enabled = true;
+        playerTableTopCam.enabled = false;
+        tweenCam.enabled = false;
+        currentCam = playerGlobeCam;
+        DoBeginGame();
+    }
+
+    private void SwapToTableTopCam()
+    {
+        mainMenuCam.enabled = false;
+        playerGlobeCam.enabled = false;
+        playerTableTopCam.enabled = true;
+        tweenCam.enabled = false;
+        currentCam = playerTableTopCam;
+    }
 
     public static void Instance_SetGraphicsLevel(GraphicsTier tier)
     {
