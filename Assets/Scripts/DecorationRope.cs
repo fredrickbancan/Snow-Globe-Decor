@@ -6,7 +6,7 @@ public class DecorationRope : MonoBehaviour
     [SerializeField] private float dangleToDistanceRatio = 0.25F;
     [SerializeField] private float distanceBetweenLights = 0.2F;
     [SerializeField] private float distanceBetweenBaubles = 0.4F;
-    [SerializeField] private float maxSimulationTime = 5.0F;
+    [SerializeField] private float maxSimulationTime = 10.0F;
     [SerializeField] private SpawnableLight spawnableChristmasLightPrefab;
     [SerializeField] private SpawnableBauble spawnableBaublePrefab;
     [SerializeField] private LineRenderer lineRendererPrefab;
@@ -28,7 +28,7 @@ public class DecorationRope : MonoBehaviour
     private float decorDistNormalized = 0.0F;
     private float ropeLineYOffset = 0.02F;
     private float distBetweenDecor = 0.0F;
-    private int simItterations = 30;
+    private int simItterations = 40;
 
     public void CreateWithPhysics(DecorationType drt, Vector3 startPoint, Vector3 endPoint)
     {

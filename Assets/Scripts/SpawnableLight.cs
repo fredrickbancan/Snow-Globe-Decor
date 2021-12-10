@@ -149,9 +149,10 @@ public class SpawnableLight : MonoBehaviour
 
     private void Update()
     {
-
-      /*  lightBrightness += flickerDelta * Time.deltaTime;
-        lightBrightness = Math.Clamp(lightBrightness, flickerMinBrightness, flickerMaxBrightness);
+        /*if (!lightEnabled)
+            return;
+        lightBrightness += flickerDelta * Time.deltaTime;
+        lightBrightness = System.Math.Clamp(lightBrightness, flickerMinBrightness, flickerMaxBrightness);
 
         Color lightColorMod = lightColor;
         lightColorMod.r *= lightBrightness;
@@ -159,6 +160,7 @@ public class SpawnableLight : MonoBehaviour
         lightColorMod.b *= lightBrightness;
         lightReference.color = lightColorMod;
         bulbMeshReference.material.color = lightColorMod;
+        bulbMeshReference.material.SetColor("_EmissionColor", lightColorMod * 4.0F);
 
         timeSinceLastFlicker += Time.deltaTime;
 

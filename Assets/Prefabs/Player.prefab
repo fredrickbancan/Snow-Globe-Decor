@@ -70,6 +70,7 @@ MonoBehaviour:
   moveSpeed: 7
   mouseSensitivity: 1
   playerCam: {fileID: 7368229437178957383}
+  footstepSounds: []
 --- !u!114 &7654582753706641550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +86,10 @@ MonoBehaviour:
   decorationRopePrefab: {fileID: 1874970886665628393, guid: 808325dab214ead47989dc4d9f960f12, type: 3}
   snowmanPrefab: {fileID: 100000, guid: 0b5146bffa52aad46a5d75d73ed35477, type: 3}
   treePrefab: {fileID: 3420541503831075696, guid: 9cf2f15ac41f9e94d973661ded60cf14, type: 3}
+  ropeAnchorIndicatorPrefab: {fileID: 1316504865353105424, guid: 04194f809d6f45d4cbb8a955f6ab9e18, type: 3}
+  ropeIndicatorPrefab: {fileID: 8610503632113636231, guid: 50779709cf0ba9147b37168327d070a4, type: 3}
+  ropeIndicatorSegmentLength: 0.25
+  ropeIndicatorLengthToDangleRatio: 0.15
   playerCameraReference: {fileID: 7368229437178957383}
   lightPosPickMaxDist: 10
 --- !u!1 &5461352961289583118
