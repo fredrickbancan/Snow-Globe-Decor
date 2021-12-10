@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 8623681848929795947}
   - component: {fileID: 7606373354786634356}
   - component: {fileID: 971425421091495525}
+  - component: {fileID: 8924347610440117819}
   m_Layer: 5
   m_Name: ToggleHud
   m_TagString: Untagged
@@ -392,6 +393,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8924347610440117819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590734625909440386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &1343571735034083014
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +531,7 @@ GameObject:
   - component: {fileID: 4578969181143606378}
   - component: {fileID: 5607887145814328488}
   - component: {fileID: 6049975487392026438}
+  - component: {fileID: 3705986194506521858}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -616,6 +642,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3705986194506521858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898551305976386268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &2184130350738657628
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +996,7 @@ GameObject:
   - component: {fileID: 1519604243784654583}
   - component: {fileID: 5456953482517150660}
   - component: {fileID: 1852547651517867489}
+  - component: {fileID: 7358568483295225401}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1056,6 +1107,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7358568483295225401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342733792360591224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &6923580719595259383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1280,7 @@ GameObject:
   - component: {fileID: 7658884949147572751}
   - component: {fileID: 3641705207377391200}
   - component: {fileID: 5340182250503655064}
+  - component: {fileID: 1806582178872787061}
   m_Layer: 5
   m_Name: ToggleTableTop
   m_TagString: Untagged
@@ -1315,3 +1391,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1806582178872787061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7186751466575929438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}

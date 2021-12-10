@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8644479363499228696}
   - component: {fileID: 1465179420839930156}
   - component: {fileID: 5925400937049687203}
+  - component: {fileID: 7253449704262660552}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -122,6 +123,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7253449704262660552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445850033753703845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &1358557627995884051
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,6 +911,7 @@ GameObject:
   - component: {fileID: 8236342361411282925}
   - component: {fileID: 5358373320259223508}
   - component: {fileID: 1135795664175030969}
+  - component: {fileID: 6629714926524833378}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -996,6 +1022,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6629714926524833378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7134283352129504309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
 --- !u!1 &8594229807477268902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1058,7 @@ GameObject:
   - component: {fileID: 4543252738884348573}
   - component: {fileID: 8102475746758494696}
   - component: {fileID: 1591097520242735070}
+  - component: {fileID: 925530002106382314}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1118,3 +1169,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &925530002106382314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8594229807477268902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c93388c9c40f3f4f93030d65f85d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound:
+    name: GuiHover_sfx
+    volume: 0.3
+    pitch: 1
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  pressSound:
+    name: GuiPress_sfx
+    volume: 0.4
+    pitch: 1.3
+    spatialBlend: 0
+    mixerGroup: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}

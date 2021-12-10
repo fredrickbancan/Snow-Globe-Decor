@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         gamePaused = true;
-        Time.timeScale = 0.0F;
+        //Time.timeScale = 0.0F;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenu.SetActive(true);
@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviour
     public void UnPauseGame()
     {
         gamePaused = false;
-        Time.timeScale = 1.0F;
+        //Time.timeScale = 1.0F;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);
