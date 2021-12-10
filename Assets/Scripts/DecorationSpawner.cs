@@ -33,6 +33,13 @@ public class DecorationSpawner : MonoBehaviour
     private Vector3 chosenRopeDanglePoint;
     private DecorationType selectedDecorationType = DecorationType.CHRISTMAS_LIGHTS;
 
+    //Sounds
+    public GameSound ropeStartSound;
+    public GameSound ropeEndSound;
+    public GameSound spawnRopeSound;
+    public GameSound spawnSnowmanSound;
+    public GameSound spawnTreeSound;
+
     private void Start()
     {
         ropeStartAnchorIndicator = Instantiate(ropeAnchorIndicatorPrefab);
@@ -154,6 +161,11 @@ public class DecorationSpawner : MonoBehaviour
             Vector3.Normalize(spawnToPlayer);
             GameObject spawnedDecor = Instantiate(decor, spawnPos, Quaternion.identity);
             spawnedDecor.transform.rotation *= Quaternion.LookRotation(spawnToPlayer);
+
+            if (selectedDecorationType == DecorationType.SNOWMAN)
+                SoundManager.Instance.PlaySound2D(spawnSnowmanSound);
+            if (selectedDecorationType == DecorationType.TREE)
+                SoundManager.Instance.PlaySound2D(spawnTreeSound);
         }
     }
 
@@ -163,6 +175,7 @@ public class DecorationSpawner : MonoBehaviour
         {
             ropeStartChosen = true;
             ropeStartAnchorIndicator.transform.position = chosenRopeStartPos;
+            SoundManager.Instance.PlaySound2D(ropeStartSound);
         }
     }
 
@@ -176,6 +189,8 @@ public class DecorationSpawner : MonoBehaviour
         dr.CreateWithPhysics(selectedDecorationType, chosenRopeStartPos, chosenRopeEndPos);
         chosenRopeStartPos = chosenRopeEndPos;
         chosenRopeEndPos = Vector3.zero;
+        SoundManager.Instance.PlaySound2D(ropeEndSound);
+        SoundManager.Instance.PlaySound2D(spawnRopeSound);
     }
 
     private bool GetClickedWorldPos(out Vector3 pos, out Vector3 normal)

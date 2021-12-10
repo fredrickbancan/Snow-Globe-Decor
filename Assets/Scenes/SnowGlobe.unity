@@ -3040,6 +3040,153 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e2d53f9c88da884b819a5fee5aff70d, type: 3}
+--- !u!1 &1351283315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351283318}
+  - component: {fileID: 1351283317}
+  - component: {fileID: 1351283316}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1351283316
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351283315}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5174673439701320178, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b164de1cfde968c4a82970400c726d81, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1351283317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351283315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a029f22cec07b4b9a8e7aa0b75db3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeIn: 1
+  fadeDuration: 6
+  delayStart: 0
+  delayDuration: 1
+  mainMusic: {fileID: 1351283316}
+  mainMusicTargetVolume: 1
+--- !u!4 &1351283318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351283315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 40
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1371153586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3547,6 +3694,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeEndSound.name
+      value: RopeEnd_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeEndSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeEndSound.volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeStartSound.name
+      value: RopeStart_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnRopeSound.name
+      value: RopeSpawn_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnTreeSound.name
+      value: SpawnTree_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeStartSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnRopeSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnTreeSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeStartSound.volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnRopeSound.volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnTreeSound.volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnSnowmanSound.name
+      value: SpawnSnowman_sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeEndSound.mixerGroup
+      value: 
+      objectReference: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnSnowmanSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnSnowmanSound.volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: ropeStartSound.mixerGroup
+      value: 
+      objectReference: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnRopeSound.mixerGroup
+      value: 
+      objectReference: {fileID: 2610155613306891409, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnTreeSound.mixerGroup
+      value: 
+      objectReference: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
+    - target: {fileID: 7654582753706641550, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
+      propertyPath: spawnSnowmanSound.mixerGroup
+      value: 
+      objectReference: {fileID: -8634101468238393218, guid: ac26cdbda3e8b604196a199ff6ed4022, type: 2}
     - target: {fileID: 8085568574220156579, guid: a31913cb0c479f7449d6f34d4800a6ca, type: 3}
       propertyPath: footsteps.name
       value: Footstep_sfx
