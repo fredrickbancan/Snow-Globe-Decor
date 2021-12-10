@@ -30,18 +30,20 @@ public class DecorationSpawner : MonoBehaviour
 
         if (Input.mouseScrollDelta.y < -0.1F)
         {
-            ropeTypeInt++;
+            ropeTypeInt--;
             if (ropeTypeInt > 6) ropeTypeInt = 6;
             selectedRopeType = (DecorationRopeType)ropeTypeInt;
             Debug.Log("Selected Decor Type:" + selectedRopeType);
+            GameManager.DoMouseScrollDown();
         }
 
         if (Input.mouseScrollDelta.y > 0.1F)
         {
-            ropeTypeInt--;
+            ropeTypeInt++;
             if (ropeTypeInt < 0) ropeTypeInt = 0;
             selectedRopeType = (DecorationRopeType)ropeTypeInt;
             Debug.Log("Selected Decor Type:" + selectedRopeType);
+            GameManager.DoMouseScrollUp();
         }
     }
 

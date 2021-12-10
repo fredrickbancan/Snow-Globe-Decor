@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public static event Action snowglobeMode;
     public static event Action decorMode;
     public static event Action takePhoto;
+    public static event Action mouseScrollUp;
+    public static event Action mouseScrollDown;
 
     private void Awake()
     {
@@ -63,6 +65,22 @@ public class GameManager : MonoBehaviour
         if (takePhoto != null)
         {
             takePhoto();
+        }
+    }
+
+    public static void DoMouseScrollUp()
+    {
+        if (mouseScrollUp != null)
+        {
+            mouseScrollUp();
+        }
+    }
+
+    public static void DoMouseScrollDown()
+    {
+        if (mouseScrollDown != null)
+        {
+            mouseScrollDown();
         }
     }
 }

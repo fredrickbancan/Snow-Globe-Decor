@@ -10,6 +10,7 @@ public class AmmoGui : MonoBehaviour
     [SerializeField] private float scaleUpAmount = 1.1f;
     [SerializeField] private float scaleUpSpeed = 0.5f;
     private RectTransform rectTransform = null;
+    private bool selected = false;
     
     // Start is called before the first frame update
     private void Awake()
