@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            instance.SetGraphicsLevel(GraphicsTier.Tier1);
             DontDestroyOnLoad(this);
             DontDestroyOnLoad(pauseMenu);
             DontDestroyOnLoad(inGameHud);
